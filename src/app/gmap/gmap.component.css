@@ -1,0 +1,58 @@
+.overlay{
+    position: absolute;
+    z-index: 100;
+    top: 175px;
+    left: 100px;
+}
+
+.heading{
+    color:black;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+}
+
+.search-container{
+    background-color: black;
+    border-radius: 30px;
+    width: 75%;
+    height: 30px;
+    display: flex;
+}
+.search{
+    display: flex;
+    width: 100%;
+}
+.search i{
+    font-size: 15px;
+    display: flex;
+    padding-right: 13px;
+    padding-top: 7px;
+}
+
+.container-fluid{
+    margin-top: 20px;
+    width: 75%;
+    height: 300px;
+    float: left;
+    background-color: aliceblue;
+    border-radius: 25px;
+    color: black;
+}
+#zip-input{
+    color: aliceblue;
+    background: transparent;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+#zip-input:focus{   
+    outline: none;
+}
+
+#mapArea{
+    height: 550px;
+    width: 100%;
+}
