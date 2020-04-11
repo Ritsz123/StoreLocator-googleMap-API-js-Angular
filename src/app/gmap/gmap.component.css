@@ -1,8 +1,10 @@
 .overlay{
+    width: 25%;
     position: absolute;
     z-index: 100;
-    top: 175px;
-    left: 100px;
+    top: 160px;
+    left: 80px;
+    bottom: 20px;
 }
 
 .heading{
@@ -30,14 +32,30 @@
     padding-top: 7px;
 }
 
-.container-fluid{
+.container{
     margin-top: 20px;
-    width: 75%;
-    height: 300px;
+    width: 80%;
+    height: 75%;
     float: left;
     background-color: aliceblue;
-    border-radius: 25px;
+    border-radius: 15px;
     color: black;
+   overflow-y: scroll;
+   padding-bottom: 5px;
+   padding-top: 5px;
+}
+
+.contain{
+    width: 100%;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+    overflow: hidden;
+}
+
+.contain span{
+    display: block;
 }
 #zip-input{
     color: aliceblue;
@@ -53,6 +71,6 @@
 }
 
 #mapArea{
-    height: 550px;
+    height: 600px;
     width: 100%;
 }
