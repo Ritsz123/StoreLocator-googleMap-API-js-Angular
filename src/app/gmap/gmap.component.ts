@@ -56,13 +56,30 @@ export class GmapComponent implements AfterViewInit{
     this.map.fitBounds(bounds);
   }
 
-
   markMarkers(latlng,name,address,index){
-     new google.maps.Marker({
+    let currentMarker= new google.maps.Marker({
       position: latlng,
       map:this.map,
       label: index.toString()
-    });     
+    });   
+
+
+
+
+
+
+
+    let infowindow= new google.maps.InfoWindow({
+      content:name+address
+    });
+
+    
+    
+    currentMarker.addListener('click',()=>{
+      this.map.setZoom(15);
+      this.map.setCenter(currentMarker.getPosition());
+      infowindow.open(this.map,currentMarker);
+    });
   }
 
 
