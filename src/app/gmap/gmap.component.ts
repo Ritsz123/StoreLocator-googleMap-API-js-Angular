@@ -46,19 +46,22 @@ export class GmapComponent implements AfterViewInit{
   }
 
   createMarker(storelist){
+    let bounds = new google.maps.LatLngBounds();
     for(var [index,store] of storelist.entries()){
       index+=1; 
-      this.markMarkers(store.coordinates,store.name,store.address,index);
-        
+      let latlng = new google.maps.LatLng(store.coordinates.latitude,store.coordinates.longitude);
+      bounds.extend(latlng);
+      this.markMarkers(latlng,store.name,store.address,index);
     }
+    this.map.fitBounds(bounds);
   }
 
-  markMarkers(latln,name,address,index){
+
+  markMarkers(latlng,name,address,index){
      new google.maps.Marker({
-      position: new google.maps.LatLng(latln.latitude,latln.longitude),
+      position: latlng,
       map:this.map,
       label: index.toString()
-      
     });     
   }
 
