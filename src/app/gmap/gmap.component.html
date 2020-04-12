@@ -4,18 +4,21 @@
     </div>
     <div class="search-container">
         <div class="search">
-            <input id="zip-input" placeholder="enter Zip code" type="text">
-            <i class="fa fa-search"></i>
+            <input id="zip-input" placeholder="enter Zip code" type="text" #zipinput (keyup.enter)="searchStore(zipinput)">
+            <i class="fa fa-search" (click)="searchStore(zipinput)"></i>
         </div>
     </div>
 
     <div class="container">
-        <div class="contain" *ngFor="let store of storelist">
+        <div class="contain" *ngFor="let store of foundStores; index as i" (click)="onContainerItemClick(i)">
+            <div class="num">
+                {{ i+1 }}
+            </div>
             <div class="address">
-                <span><strong>Address:</strong></span>
                 <span> {{ store.addressLines }} </span> 
             </div>
-            <div class="phone"> <strong>Phone:</strong>{{ store.storeNumber }} </div>
+            <div class="phone"><span class="small"> {{ store.phoneNumber }} </span></div>
+            
         </div>
     </div>
 </div>
