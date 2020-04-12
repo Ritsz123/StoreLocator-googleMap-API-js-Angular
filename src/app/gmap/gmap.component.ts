@@ -8,10 +8,14 @@ import { StoresData } from '../data/stores-data';
 export class GmapComponent implements AfterViewInit{
 
   constructor() { }
-
+  
+  storelist;
+  storestoDisplay;
   ngAfterViewInit(){
+    this.storelist= new StoresData().getstores();
     this.mapInitilizer();
-
+    this.storestoDisplay=this.storelist;
+    this.createMarker(this.storestoDisplay);
   }
 
   @ViewChild('mapArea', {static: false}) gmap: ElementRef;
@@ -37,7 +41,7 @@ export class GmapComponent implements AfterViewInit{
     zoom:11
   };
 
-  storelist= new StoresData().getstores();
+  
   foundStores=[];
 
   infowindow= new google.maps.InfoWindow();
@@ -46,7 +50,7 @@ export class GmapComponent implements AfterViewInit{
 
   mapInitilizer(){
     this.map= new google.maps.Map(this.gmap.nativeElement,this.mapOptions);
-    this.createMarker(this.storelist);
+    //this.createMarker(this.storelist);
   }
 
   createMarker(storelist){
@@ -104,8 +108,6 @@ export class GmapComponent implements AfterViewInit{
 
     google.maps.event.addListener(currentMarker,'click',()=>{
       
-      this.map.setCenter(currentMarker.getPosition());
-      this.map.setZoom(13);
       this.infowindow.setContent(html);
       this.infowindow.open(this.map,currentMarker);
     });
@@ -119,14 +121,30 @@ export class GmapComponent implements AfterViewInit{
 
   searchStore(zipInputField:HTMLInputElement){
     this.foundStores=[];
+    for(let m of this.markers){
+      m.setMap(null);     //remove markers
+    }
+    this.markers=[];      //remove markers from list
     let zipcode= zipInputField.value.toString();
-    this.storelist.forEach(store => {
-      //console.log(store.address.postalCode.substr(0,5));
-        if(store.address.postalCode.substr(0,5)==zipcode){
-          this.foundStores.push(store);
-        }      
-    });
-    console.log(this.foundStores);
+    if(zipcode){
+      this.storelist.forEach(store => {
+        //console.log(store.address.postalCode.substr(0,5));
+          if(store.address.postalCode.substr(0,5)==zipcode){
+            this.foundStores.push(store);
+          }
+          this.storestoDisplay=this.foundStores;      
+      });
+      if(this.foundStores.length!==0){
+        this.createMarker(this.storestoDisplay);
+        //console.log(this.foundStores);
+      }else{
+        alert("no storesFound");
+      }
+      
+    }else{
+      alert("Zip code is empty");
+    }
+    
     
   }
 }

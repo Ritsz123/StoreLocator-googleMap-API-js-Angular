@@ -57,7 +57,8 @@
     overflow: hidden;
 }
 .contain:hover{
-    border: 5px solid lightgray;
+    background-color: lightgrey;
+
 }
 
 .contain span{

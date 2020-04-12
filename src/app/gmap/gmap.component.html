@@ -10,7 +10,7 @@
     </div>
 
     <div class="container">
-        <div class="contain" *ngFor="let store of foundStores; index as i" (click)="onContainerItemClick(i)">
+        <div class="contain" *ngFor="let store of storestoDisplay; index as i" (click)="onContainerItemClick(i)">
             <div class="num">
                 {{ i+1 }}
             </div>
